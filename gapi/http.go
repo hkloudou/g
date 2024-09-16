@@ -28,7 +28,7 @@ func Error(c *gin.Context, err error) {
 		errStr = strings.TrimRight(errStr, "\n")
 
 		for k := range kv {
-			if strings.ToLower(k) == "useragent" || strings.HasPrefix(strings.ToLower(k), "x-app-") || strings.HasPrefix(strings.ToLower(k), "x-api-") {
+			if strings.ToLower(k) == "user-agent" || strings.HasPrefix(strings.ToLower(k), "x-app-") || strings.HasPrefix(strings.ToLower(k), "x-api-") {
 				c.AbortWithStatusJSON(200, httpApiError{Code: 1003, Message: errStr})
 				return
 			}
