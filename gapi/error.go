@@ -45,3 +45,16 @@ func NewAppErrorValidate(block, msg string, raw ...error) appError {
 	}
 	return err
 }
+
+func NewAppErrorSign(block, msg string, raw ...error) appError {
+	err := appError{
+		code:   1003,
+		source: appErrorSourceSign,
+		block:  block,
+		msg:    msg,
+	}
+	if len(raw) > 0 {
+		err.raw = raw[0]
+	}
+	return err
+}
