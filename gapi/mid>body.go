@@ -27,5 +27,6 @@ func MiddleWare_BodyCaching() gin.HandlerFunc {
 		c.Request.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
 
 		c.Next()
+		// c.ShouldBindBodyWith()
 	}
 }
