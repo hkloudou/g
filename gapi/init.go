@@ -12,16 +12,16 @@ import (
 )
 
 var trans ut.Translator
-var validate *validator.Validate
+var Validate *validator.Validate
 
 func init() {
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
-		validate = v
+		Validate = v
 	} else {
 		panic("can't read `*validator.Validate` from gin engine")
 	}
 	// 注册自定义字段名称，提取结构体中的 label 标签
-	validate.RegisterTagNameFunc(func(fld reflect.StructField) string {
+	Validate.RegisterTagNameFunc(func(fld reflect.StructField) string {
 		label := fld.Tag.Get("label")
 		if label == "" {
 			return fld.Name // 没有 label 则使用字段名
@@ -35,7 +35,7 @@ func init() {
 	// if !ok {
 	// 	panic("not read translator zh")
 	// }
-	err := zh_translations.RegisterDefaultTranslations(validate, trans)
+	err := zh_translations.RegisterDefaultTranslations(Validate, trans)
 	if err != nil {
 		panic(err)
 	}
