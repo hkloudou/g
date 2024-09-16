@@ -1,6 +1,7 @@
 package gapi
 
 import (
+	"fmt"
 	"reflect"
 	"strings"
 
@@ -44,6 +45,7 @@ func init() {
 func translateErrors(err error) map[string]string {
 	errs := err.(validator.ValidationErrors)
 	errors := map[string]string{}
+	fmt.Println("tran", err.Error())
 	for _, e := range errs {
 		errors[e.Field()] = e.Translate(trans)
 	}
