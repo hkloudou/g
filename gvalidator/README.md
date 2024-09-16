@@ -1,6 +1,3 @@
-# gvalidator
-
-
 ## Install
 ``` sh
 go get github.com/hkloudou/g/gvalidator
