@@ -50,8 +50,8 @@ func Error(c *gin.Context, err error) {
 
 func Data(c *gin.Context, T any, message ...string) {
 	if len(message) == 0 {
-		c.JSON(200, gin.H{"code": 0, "data": T})
+		c.JSON(200, gin.H{"code": 1000, "data": T})
 	} else {
-		c.JSON(200, gin.H{"code": 0, "data": T, "msg": message[0]})
+		c.JSON(200, gin.H{"code": 1000, "data": T, "msg": message[0]})
 	}
 }
