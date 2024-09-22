@@ -3,7 +3,7 @@ package gapi
 import (
 	"fmt"
 
-	"github.com/hkloudou/xlib/xcolor"
+	"github.com/hkloudou/g/gapi/xcolor"
 )
 
 type appErrorSource string

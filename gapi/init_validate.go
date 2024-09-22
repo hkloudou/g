@@ -1,7 +1,6 @@
 package gapi
 
 import (
-	"fmt"
 	"reflect"
 	"strings"
 
@@ -32,10 +31,11 @@ func init() {
 
 	zh := zhongwen.New()
 	uni := ut.New(zh, zh)
-	trans, _ = uni.GetTranslator("zh")
-	// if !ok {
-	// 	panic("not read translator zh")
-	// }
+	var ok bool
+	trans, ok = uni.GetTranslator("zh")
+	if !ok {
+		panic("not read translator zh")
+	}
 	err := zh_translations.RegisterDefaultTranslations(Validate, trans)
 	if err != nil {
 		panic(err)
@@ -45,9 +45,10 @@ func init() {
 func translateErrors(err error) map[string]string {
 	errs := err.(validator.ValidationErrors)
 	errors := map[string]string{}
-	fmt.Println("tran", err.Error())
+	// fmt.Println("tran", err.Error())
 	for _, e := range errs {
 		errors[e.Field()] = e.Translate(trans)
+		// errors[e.Field()] = e.Error()
 	}
 	// validator.err
 	return removeTopStruct(errors)
